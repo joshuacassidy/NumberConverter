@@ -1,29 +1,40 @@
 import math
 import os
+import sys
 
+def Welcome():
+    print("Welcome to Dec Converter!")
+    print("Here you can convert a number from Decimal to Binary,Octal or Hex. You can also convert Binary Octal or Hex numbers to Decimal")
+def clear():
+    if os.name != 'nt':
+        os.system('clear')
+    else:
+        os.system('cls')
+def Quit():
+    quit = input("""Press "Q" to quit or Enter to Continue """)
+    if quit.lower() == "q":
+        sys.exit()
 def Convert():
     x = []
-
-    def clear():
-        if os.name != 'nt':
-            os.system('clear')
-        else:
-            os.system('cls')
-
     hexlibrary = [0,1,2,3,4,5,6,7,8,9,'A','B','C','D','E','F']
+
+
     def ConvertedToAns():
         x.reverse()
         convertedNumber = ''.join(str(joinNum) for joinNum in x)
         print ("{} converted to {} is {}".format(num,NumberType,convertedNumber))
+
+
     def ConvertedFromAns():
         initialNum = ''.join(str(joinNum) for joinNum in num)
         print ("{} converted to {} is {}".format(initialNum,NumberType,sum(out)))
 
     while True:
+        Quit()
         clear()
+
         choice = input('Would you like to convert your number to To or From Decimal? ')
         NumberType = input('Would you like you number converted {} Binary,Octal or Hex? '.format(choice))
-
         if choice.lower() == 'to' and NumberType.lower() == 'binary':
             num = int(input("Enter a number to be converted: "))
             out = num
@@ -39,7 +50,7 @@ def Convert():
             break
 
         elif choice.lower() == 'from' and NumberType.lower() == 'binary':
-                num = int(input("Enter a number to be converted."))
+                num = int(input("Enter a number to be converted: "))
                 num = [int(toArray) for toArray in str(num)]
                 out = []
                 num.reverse()
@@ -65,7 +76,7 @@ def Convert():
             break
 
         elif choice.lower() == 'from' and NumberType.lower() == 'octal':
-            num = int(input("Enter a number to be converted."))
+            num = int(input("Enter a number to be converted: "))
             num = [int(toArray) for toArray in str(num)]
             out = []
 
@@ -94,7 +105,7 @@ def Convert():
             break
 
         elif choice.lower() == 'from' and NumberType.lower() == 'hex' or NumberType.lower() == 'hexadecimal':
-            num = input("Enter a number to be converted.")
+            num = input("Enter a number to be converted: ")
             out = []
             num = [str(toArray) for toArray in str(num.lower())]
             x =[]
@@ -113,4 +124,7 @@ def Convert():
         else:
             print('You cannot convert a number {} {}'.format(choice,NumberType))
             break
-Convert()
+clear()
+Welcome()
+while  True:
+    Convert()
